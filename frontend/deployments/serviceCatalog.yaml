@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: productscatalog-service
+  name: productcatalog-service
   namespace: flask-app-demo
   labels:
     app: productcatalog
@@ -11,4 +11,4 @@ spec:
   - port: 5100
     targetPort: 5100
   selector:
-    app: productscatalog 
+    app: productcatalog 
