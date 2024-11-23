@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: productcatalog-service
+  name: productscatalog-service
   namespace: flask-app-demo
   labels:
     app: productcatalog
 spec:
   type: LoadBalancer
   ports:
-  - port: 5000
-    targetPort: 5000
+  - port: 5100
+    targetPort: 5100
   selector:
-    app: productcatalog 
+    app: productscatalog 
