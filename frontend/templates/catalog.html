@@ -61,27 +61,33 @@
             color: #ff4500; /* Stronger orange for price */
         }
         .payment-section {
-            margin-top: 40px;
+            margin-top: 30px;
             padding: 20px;
-            background-color: #4b0082;
-            color: #ffa500;
-            text-align: center;
+            background-color: #fff; /* White background */
             border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .payment-section p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #6a0dad; /* Purple text */
         }
         .payment-section a {
-            display: block;
-            color: #fff; /* White text for payment links */
-            margin: 10px auto;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 10px 15px;
-            background-color: #ff4500;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #ff4500; /* Orange background */
             border-radius: 5px;
-            max-width: 200px;
-            transition: background-color 0.3s;
+            text-decoration: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
         }
         .payment-section a:hover {
-            background-color: #ff6347; /* Lighter red on hover */
+            background-color: #e03e00; /* Darker orange on hover */
+            transform: scale(1.05);
         }
         footer {
             padding: 20px;
@@ -106,19 +112,20 @@
         </div>
         {% endfor %}
     </div>
-</div>
 
-<div class="payment-section">
-    <p>Complete Your Purchase:</p>
-    {% if gateway1_enabled %}
-    <a href="https://www.paymentgateway1.com" target="_blank">Pay with Gateway 1</a>
-    {% endif %}
-    {% if gateway2_enabled %}
-    <a href="https://www.paymentgateway2.com" target="_blank">Pay with Gateway 2</a>
-    {% endif %}
-    {% if gateway3_enabled %}
-    <a href="https://www.paymentgateway3.com" target="_blank">Pay with Gateway 3</a>
-    {% endif %}
+    <!-- Payment Section -->
+    <div class="payment-section">
+        <p>Complete Your Purchase:</p>
+        {% if gateway1_enabled %}
+        <a href="https://www.paypal.com/checkoutnow" target="_blank">Pay with PayPal</a>
+        {% endif %}
+        {% if gateway2_enabled %}
+        <a href="https://checkout.stripe.com/pay" target="_blank">Pay with Stripe</a>
+        {% endif %}
+        {% if gateway3_enabled %}
+        <a href="https://rzp.io/l/demo" target="_blank">Pay with Razorpay</a>
+        {% endif %}
+    </div>
 </div>
 
 <footer>
