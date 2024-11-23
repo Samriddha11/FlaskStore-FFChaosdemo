@@ -39,4 +39,4 @@ def get_product_details():
     return jsonify(product_details_list)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8989)
+    app.run(host='0.0.0.0', port=8787)
