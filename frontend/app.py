@@ -17,7 +17,6 @@ HOST_NAME = 'http://storefront-service:8989'
 SERVICE_PATH = '/getproductdetails'
 URL = HOST_NAME + SERVICE_PATH
 
-# Boto3 configuration for timeouts and retries
 config = Config(
     connect_timeout=2,
     read_timeout=2,
@@ -38,69 +37,44 @@ def get_secret():
         get_secret_value_response = client.get_secret_value(SecretId=secret_name)
         secret = get_secret_value_response['SecretString']
         return json.loads(secret)['api_key']
-    except (ConnectTimeoutError, ReadTimeoutError) as e:
-        print(f"Timeout while connecting to Secrets Manager: {e}")
-        raise TimeoutError("Timeout while retrieving secret from AWS Secrets Manager")
-    except (BotoCoreError, EndpointConnectionError) as e:
-        print(f"Connection issue with Secrets Manager: {e}")
-        raise e
     except Exception as e:
-        print(f"Error fetching API key from Secrets Manager: {e}")
+        print(f"Error fetching API key: {e}")
         return None
 
-def validate(products):
-    if not isinstance(products, list):
-        return False
-    for product in products:
-        if not all(key in product for key in ["name", "description", "price"]):
-            return False
-    return True
-
-def get_flag_status(flagstate):
+def get_flag_status(flag_name):
     try:
         api_key = get_secret()
         if api_key is None:
             return False
 
         client = CfClient(api_key)
-        flag_status = client.bool_variation(flagstate, beta_testers, default=False if not client.is_initialized() else True)
-        return flag_status
-    except (TimeoutError, ConnectTimeoutError, ReadTimeoutError) as e:
-        print(f"Timeout or connection error in get_flag_status: {e}")
-        return False
+        return client.bool_variation(flag_name, beta_testers, default=False)
     except Exception as e:
-        print(f"Exception in get_flag_status: {e}")
+        print(f"Error fetching feature flag '{flag_name}': {e}")
         return False
-
-@app.route('/')
-def hello():
-    return 'Welcome to the Site'
 
 @app.route('/productdetails', methods=['GET'])
 def product_details():
     try:
         product_details_flag = get_flag_status("ProductDetails")
-        payment_links_flag = get_flag_status("PaymentLinks")
+        gateway1_flag = get_flag_status("Gateway1")
+        gateway2_flag = get_flag_status("Gateway2")
+        gateway3_flag = get_flag_status("Gateway3")
 
         if product_details_flag:
-            try:
-                response = requests.get(URL)
-                products = response.json()
-
-                if validate(products):
-                    return render_template('catalog.html', products=products, payment_links_enabled=payment_links_flag)
-                else:
-                    return "Bad Request, Corrupted Response", 500
-            except ValueError:
-                return "Bad Request, Corrupted Response", 500
-            except requests.RequestException as e:
-                return jsonify({"error": "Service unavailable", "details": str(e)}), 503
+            response = requests.get(URL)
+            products = response.json()
+            return render_template(
+                'catalog.html',
+                products=products,
+                gateway1_enabled=gateway1_flag,
+                gateway2_enabled=gateway2_flag,
+                gateway3_enabled=gateway3_flag
+            )
         else:
-            return render_template('feature_unavailable.html'), 200
-    except TimeoutError:
-        return jsonify({"error": "Request to AWS Secrets Manager timed out"}), 504
+            return render_template('feature_unavailable.html')
     except Exception as e:
-        return jsonify({"error": "Internal Server Error", "details": str(e)}), 500
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5100)
+    app.run(host='0.0.0.0', port=5000)
