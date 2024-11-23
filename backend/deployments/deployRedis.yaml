@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis
+  name: redisdb
   namespace: flask-app-demo
 spec:
   selector:
     matchLabels:
-      app: redis
+      app: redisdb
   replicas: 1
   template:
     metadata:
       labels:
-        app: redis
+        app: redisdb
     spec:
       containers:
-      - name: redis
+      - name: redisdb
         image: redis
         resources:
           requests:
             cpu: 100m
             memory: 100Mi
         ports:
-        - containerPort: 6379
+        - containerPort: 6380
