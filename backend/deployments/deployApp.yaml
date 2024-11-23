@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: storefront
+  name: storesfront
   namespace: flask-app-demo
 spec:
   selector:
     matchLabels:
-      app: storefront
+      app: storesfront
   replicas: 1
   template:
     metadata:
       labels:
-        app: storefront
+        app: storesfront
     spec:
       containers:
-      - name: storefront
-        image: neosam01/storefront:v1
+      - name: storesfront
+        image: neosam01/storesfront:v1
         resources:
           requests:
             cpu: 100m
             memory: 100Mi
         ports:
-        - containerPort: 8383
+        - containerPort: 8282
