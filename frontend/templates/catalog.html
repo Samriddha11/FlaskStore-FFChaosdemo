@@ -60,6 +60,15 @@
         .product-card p strong {
             color: #ff4500; /* Stronger orange for price */
         }
+        .payment-options a {
+            display: block;
+            margin-top: 10px;
+            color: #4b0082; /* Link color */
+            text-decoration: none;
+        }
+        .payment-options a:hover {
+            text-decoration: underline;
+        }
         footer {
             padding: 20px;
             background-color: #4b0082; /* Darker purple for footer */
@@ -80,6 +89,13 @@
             <h3>{{ product.name }}</h3>
             <p>{{ product.description }}</p>
             <p><strong>Price:</strong> ${{ product.price }}</p>
+            {% if payment_links_enabled %}
+            <div class="payment-options">
+                <a href="https://www.paymentlink1.com" target="_blank">Pay with Option 1</a>
+                <a href="https://www.paymentlink2.com" target="_blank">Pay with Option 2</a>
+                <a href="https://www.paymentlink3.com" target="_blank">Pay with Option 3</a>
+            </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
