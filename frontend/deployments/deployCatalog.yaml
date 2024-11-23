@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: productscatalog
+  name: productcatalog
   namespace: flask-app-demo
 spec:
   selector:
     matchLabels:
-      app: productscatalog
+      app: productcatalog
   replicas: 1
   template:
     metadata:
       labels:
-        app: productscatalog
+        app: productcatalog
     spec:
       serviceAccountName: secretsademo
       containers:
-      - name: productscatalog
+      - name: productcatalog
         image: neosam01/ffchaosfront:v2
         resources:
           requests:
             cpu: 100m
             memory: 100Mi
         ports:
-        - containerPort: 5100
+        - containerPort: 5000
