@@ -14,6 +14,11 @@ def set_product_details():
         "P_Playstation": {"name": "Playstation", "description": "Gaming console", "price": 499.99},
         "P_Mobile_Phones": {"name": "Mobile Phones", "description": "Latest smartphones", "price": 999.99},
         "P_Televisions": {"name": "Televisions", "description": "Smart 4K TVs", "price": 899.99}
+        "P_Cameras": {"name": "Cameras", "description": "Mirrorless Cameras", "price": 599.99}
+        "P_Lenses": {"name": "Lenses", "description": "Zoom Lenses", "price": 99.99}
+        "P_Bags": {"name": "Bags", "description": "Backpacks", "price": 199.99}
+        "P_Speakers": {"name": "Speakers", "description": "Bluetooth Speakers", "price": 99.99}
+    
     }
     
     # Store product details in Redis
