@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: storefront-service
+  name: storesfront-service
   namespace: flask-app-demo
   labels:
-    app: storefront
+    app: storesfront
 spec:
   type: ClusterIP
   ports:
-  - port: 8989
-    targetPort: 8989
+  - port: 8787
+    targetPort: 8787
   selector:
-    app: storefront 
+    app: storesfront 
