@@ -9,7 +9,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #6a0dad, #4b0082); /* Gradient background */
+            background: linear-gradient(135deg, #6a0dad, #4b0082);
             color: #ffa500;
             display: flex;
             flex-direction: column;
@@ -60,6 +60,22 @@
         }
         .product-card p strong {
             color: #ff4500;
+        }
+        .add-to-cart-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #ff4500, #e03e00);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .add-to-cart-btn:hover {
+            background: linear-gradient(135deg, #e03e00, #d23600);
+            transform: scale(1.1);
         }
         .payment-section {
             margin-top: 40px;
@@ -115,11 +131,11 @@
             <h3>{{ product.name }}</h3>
             <p>{{ product.description }}</p>
             <p><strong>Price:</strong> ${{ product.price }}</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
         </div>
         {% endfor %}
     </div>
 
-    <!-- Payment Section -->
     <div class="payment-section">
         <p>Complete Your Purchase:</p>
         {% if gateway_status.PayPal %}
