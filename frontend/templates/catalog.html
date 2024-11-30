@@ -89,6 +89,11 @@
             background-color: #e03e00; /* Darker orange on hover */
             transform: scale(1.05);
         }
+        .payment-unavailable {
+            margin: 10px;
+            font-size: 1rem;
+            color: #ff4500; /* Strong orange text for unavailable message */
+        }
         footer {
             padding: 20px;
             background-color: #4b0082; /* Darker purple for footer */
@@ -116,14 +121,22 @@
     <!-- Payment Section -->
     <div class="payment-section">
         <p>Complete Your Purchase:</p>
-        {% if gateway1_enabled %}
+        {% if gateway_status.PayPal %}
         <a href="https://www.paypal.com/checkoutnow" target="_blank">Pay with PayPal</a>
+        {% else %}
+        <p class="payment-unavailable">PayPal: Service Unavailable</p>
         {% endif %}
-        {% if gateway2_enabled %}
+
+        {% if gateway_status.Stripe %}
         <a href="https://checkout.stripe.com/pay" target="_blank">Pay with Stripe</a>
+        {% else %}
+        <p class="payment-unavailable">Stripe: Service Unavailable</p>
         {% endif %}
-        {% if gateway3_enabled %}
+
+        {% if gateway_status.Razorpay %}
         <a href="https://rzp.io/l/demo" target="_blank">Pay with Razorpay</a>
+        {% else %}
+        <p class="payment-unavailable">Razorpay: Service Unavailable</p>
         {% endif %}
     </div>
 </div>
