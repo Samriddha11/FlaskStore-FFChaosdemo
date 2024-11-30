@@ -63,9 +63,6 @@
         .payment-section {
             margin-top: 30px;
             padding: 20px;
-            background-color: #fff; /* White background */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
         .payment-section p {
@@ -77,17 +74,18 @@
             display: inline-block;
             margin: 10px;
             padding: 10px 20px;
-            color: #fff;
-            background-color: #ff4500; /* Orange background */
+            color: #fff; /* White text */
+            background-color: #ff4500; /* Orange button background */
             border-radius: 5px;
             text-decoration: none;
             font-size: 1rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Button shadow */
             transition: background-color 0.3s, transform 0.3s;
         }
         .payment-section a:hover {
             background-color: #e03e00; /* Darker orange on hover */
-            transform: scale(1.05);
+            transform: scale(1.05); /* Slight pop-out effect */
         }
         .payment-unavailable {
             margin: 10px;
