@@ -4,7 +4,6 @@ from flask import Flask, render_template, jsonify
 from featureflags.client import CfClient
 from featureflags.evaluations.auth_target import Target
 from botocore.config import Config
-from botocore.exceptions import BotoCoreError, EndpointConnectionError, ConnectTimeoutError, ReadTimeoutError
 import json
 
 app = Flask(__name__)
@@ -53,6 +52,14 @@ def get_flag_status(flag_name):
         print(f"Error fetching feature flag '{flag_name}': {e}")
         return False
 
+def is_link_reachable(url):
+    try:
+        response = requests.head(url, timeout=3)
+        return response.status_code == 200
+    except requests.RequestException as e:
+        print(f"Error checking link {url}: {e}")
+        return False
+
 @app.route('/productdetails', methods=['GET'])
 def product_details():
     try:
@@ -64,12 +71,24 @@ def product_details():
         if product_details_flag:
             response = requests.get(URL)
             products = response.json()
+
+            # Check payment gateway links
+            gateway_links = {
+                "PayPal": "https://www.paypal.com/checkoutnow",
+                "Stripe": "https://checkout.stripe.com/pay",
+                "Razorpay": "https://rzp.io/l/demo"
+            }
+
+            gateway_status = {
+                "PayPal": gateway1_flag and is_link_reachable(gateway_links["PayPal"]),
+                "Stripe": gateway2_flag and is_link_reachable(gateway_links["Stripe"]),
+                "Razorpay": gateway3_flag and is_link_reachable(gateway_links["Razorpay"]),
+            }
+
             return render_template(
                 'catalog.html',
                 products=products,
-                gateway1_enabled=gateway1_flag,
-                gateway2_enabled=gateway2_flag,
-                gateway3_enabled=gateway3_flag
+                gateway_status=gateway_status
             )
         else:
             return render_template('feature_unavailable.html')
