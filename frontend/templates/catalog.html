@@ -9,96 +9,99 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #6a0dad; /* Purple background */
-            color: #ffa500; /* Orange text */
+            background: linear-gradient(135deg, #6a0dad, #4b0082); /* Gradient background */
+            color: #ffa500;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin: 50px auto;
             text-align: center;
             flex-grow: 1;
         }
         h1 {
-            color: #ffa500; /* Orange text for title */
-            font-size: 3rem;
+            color: #ffa500;
+            font-size: 3.5rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
         }
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            gap: 25px;
             justify-items: center;
         }
         .product-card {
-            background-color: #fff; /* White background for cards */
+            background-color: #fff;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             width: 100%;
             max-width: 300px;
         }
         .product-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         .product-card h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #6a0dad; /* Purple text for product names */
+            margin: 0 0 10px;
+            font-size: 1.6rem;
+            color: #6a0dad;
         }
         .product-card p {
             font-size: 1rem;
-            color: #333; /* Darker text for descriptions */
+            color: #555;
         }
         .product-card p strong {
-            color: #ff4500; /* Stronger orange for price */
+            color: #ff4500;
         }
         .payment-section {
-            margin-top: 30px;
+            margin-top: 40px;
             padding: 20px;
             text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
         }
         .payment-section p {
             font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #6a0dad; /* Purple text */
+            margin-bottom: 15px;
+            color: #ffa500;
         }
         .payment-section a {
             display: inline-block;
             margin: 10px;
-            padding: 10px 20px;
-            color: #fff; /* White text */
-            background-color: #ff4500; /* Orange button background */
+            padding: 12px 25px;
+            color: #fff;
+            background: linear-gradient(135deg, #ff4500, #e03e00);
             border-radius: 5px;
             text-decoration: none;
             font-size: 1rem;
             font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Button shadow */
-            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s, transform 0.3s;
         }
         .payment-section a:hover {
-            background-color: #e03e00; /* Darker orange on hover */
-            transform: scale(1.05); /* Slight pop-out effect */
+            background: linear-gradient(135deg, #e03e00, #d23600);
+            transform: scale(1.1);
         }
         .payment-unavailable {
             margin: 10px;
             font-size: 1rem;
-            color: #ff4500; /* Strong orange text for unavailable message */
+            color: #ff4500;
         }
         footer {
             padding: 20px;
-            background-color: #4b0082; /* Darker purple for footer */
+            background-color: #4b0082;
             color: #ffa500;
             text-align: center;
             font-size: 1rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -140,7 +143,7 @@
 </div>
 
 <footer>
-    <p>Harness Chaos Engineering Demo Page</p>
+    <p>&copy; 2024 Harness Chaos Engineering Demo Page</p>
 </footer>
 
 </body>
