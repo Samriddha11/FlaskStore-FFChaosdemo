@@ -101,7 +101,7 @@ def product_details():
             # Define gateway links
             gateway_links = {
                 "PayPal": "https://www.paypal.com",
-                "Stripe": "https://checkout.stripe.com",
+                "Stripe": "https://stripe.com/in",
                 "Razorpay": "https://razorpay.com"
             }
 
