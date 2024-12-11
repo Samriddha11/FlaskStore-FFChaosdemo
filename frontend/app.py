@@ -74,9 +74,9 @@ def product_details():
 
             # Check payment gateway links
             gateway_links = {
-                "PayPal": "https://www.paypal.com/checkoutnow",
-                "Stripe": "https://checkout.stripe.com/pay",
-                "Razorpay": "https://rzp.io/l/demo"
+                "PayPal": "https://www.paypal.com",
+                "Stripe": "https://stripe.com",
+                "Razorpay": "https://razorpay.com"
             }
 
             gateway_status = {
